@@ -8,35 +8,39 @@ from telegram.ext import MessageHandler, Filters
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s -%(message)s',
         level=logging.INFO)
 
-API_KEY = ""
+API_KEY = "your-telegram-bot-api-key"
 
 updater = Updater(token=API_KEY, use_context=True)
 dispatcher = updater.dispatcher
 
-def start(update, context):
+def start(update, context) -> None:
     chat_id = update.effective_chat.id
     context.bot.send_message(
         chat_id=chat_id, text="hi"
     )
 
-def search(update, context):
+def search(update, context) -> None:
     chat_id = update.effective_chat.id
     context.bot.send_message(
         chat_id=chat_id, text="search"
     )
 
-def unknown(update, context):
+def unknown(update, context) -> None:
     chat_id = update.effective_chat.id
     context.bot.send_message(
         chat_id=chat_id, text="Sorry, I don't understand that command."
     )
 
-start_handler = CommandHandler("start", start)
-search_handler = CommandHandler("search", search)
-unknown_handler = MessageHandler(Filters.command, unknown)
+def main() -> None:
+    start_handler = CommandHandler("start", start)
+    search_handler = CommandHandler("search", search)
+    unknown_handler = MessageHandler(Filters.command, unknown)
 
-dispatcher.add_handler(start_handler)
-dispatcher.add_handler(search_handler)
-dispatcher.add_handler(unknown_handler)
+    dispatcher.add_handler(start_handler)
+    dispatcher.add_handler(search_handler)
+    dispatcher.add_handler(unknown_handler)
 
-updater.start_polling()
+    updater.start_polling()
+
+if __name__ == '__main__':
+    main()
