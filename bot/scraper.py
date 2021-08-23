@@ -4,14 +4,12 @@ from bs4 import BeautifulSoup
 
 
 API_URL = "https://api.semanticscholar.org/graph/v1"
-timeout = 5
-limit = 5
-offset = 0
+
 
 """
     Query semanticscholar.org api endpoint for paper
 """
-def semantic_scholar_query(paper):
+def semantic_scholar_query(paper, offset=0, limit=5, timeout=5):
     params = {
         "query": paper,
         "offset": offset,
