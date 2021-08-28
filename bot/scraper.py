@@ -47,7 +47,7 @@ def parse_titles(res):
     return titles
 
 
-def extract_download(url):
+def extract_download(url, timeout=5):
     links = []
     r = requests.get(url,
             timeout=timeout)
