@@ -9,7 +9,7 @@ API_URL = "https://api.semanticscholar.org/graph/v1"
 """
     Query semanticscholar.org api endpoint for paper
 """
-def semantic_scholar_query(paper, offset=0, limit=5, timeout=5):
+def semantic_scholar_query(paper, limit=5, offset=0, timeout=5):
     params = {
         "query": paper,
         "offset": offset,
